@@ -1,5 +1,5 @@
 import { BadgeCheck, Banknote, Trees, Zap, type LucideIcon } from "lucide-react";
-import { maxTerm } from "./credit";
+import { creditConfig, maxTerm } from "./credit";
 
 export const heroStats: readonly { label: string; value: string }[] = [
   { label: "Superficie", value: "5.000 m²" },
@@ -18,13 +18,13 @@ export const pillars: readonly { icon: LucideIcon; title: string; description: s
   {
     icon: BadgeCheck,
     title: "Rol Propio Individual",
-    description: "Subdivisión aprobada (SAG / CBR). Escrituración notarial inmediata.",
+    description: `Subdivisión aprobada (SAG / CBR). Escritura en notaría en ${creditConfig.deedDays} días.`,
     tag: "D.L. 3.516",
   },
   {
     icon: Banknote,
     title: "Crédito Directo",
-    description: `Hasta ${maxTerm} cuotas directas con la inmobiliaria, sin bancos.`,
+    description: `${Math.round(creditConfig.downPaymentPct * 100)}% de pie y el saldo en hasta ${maxTerm} cuotas directas con la inmobiliaria, sin bancos.`,
     tag: "Trato directo",
   },
   {

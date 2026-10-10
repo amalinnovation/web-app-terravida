@@ -1,26 +1,38 @@
 import { site } from "@/data/site";
 import { formatPercent, formatUf } from "@/lib/format";
 
-export function buildWhatsAppUrl(message: string): string {
-  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+export function buildWhatsAppUrl(message: string, phone: string = site.whatsappNumber): string {
+  return `https://wa.me/${phone.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
 }
 
 export const generalMessage = "Hola Terravida, deseo información sobre las parcelas.";
 export const visitMessage = "Hola, quiero coordinar una visita a Terravida.";
 
-export function simulationMessage(input: {
-  lotName: string;
-  priceUf: number;
-  downPaymentPct: number;
-  downPaymentUf: number;
-  months: number;
-  installmentUf: number;
-}): string {
+type SimulationMessageInput =
+  | { payment: "contado"; lotName: string; priceUf: number }
+  | {
+      payment: "credito";
+      lotName: string;
+      priceUf: number;
+      downPaymentPct: number;
+      downPaymentUf: number;
+      balanceUf: number;
+      months: number;
+    };
+
+export function simulationMessage(input: SimulationMessageInput): string {
+  const lot = `*${input.lotName}* (${formatUf(input.priceUf)})`;
+  if (input.payment === "contado") {
+    return [
+      `Hola! Vengo de la web y me interesa ${lot} con pago contado.`,
+      "Quiero conocer el descuento vigente y coordinar visita.",
+    ].join("\n");
+  }
   return [
-    `Hola! Vengo de la web y coticé *${input.lotName}* (${formatUf(input.priceUf)}):`,
+    `Hola! Vengo de la web y coticé ${lot}:`,
     `• Pie: ${formatPercent(input.downPaymentPct)} (${formatUf(input.downPaymentUf)})`,
-    `• Plazo: ${input.months} cuotas de ~${formatUf(input.installmentUf, 2)}`,
-    "Quiero confirmar disponibilidad y coordinar visita.",
+    `• Saldo: ${formatUf(input.balanceUf)} en ${input.months} cuotas`,
+    "Quiero conocer el valor de la cuota, los descuentos vigentes y coordinar visita.",
   ].join("\n");
 }
 

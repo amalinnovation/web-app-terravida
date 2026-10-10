@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatClp, formatDate, formatPercent, formatUf } from "./format";
+import { formatClp, formatDate, formatM2, formatPercent, formatUf } from "./format";
 
 describe("formatUf", () => {
   it("agrupa miles con punto y sin decimales por defecto", () => {
@@ -27,5 +27,12 @@ describe("formatPercent", () => {
 describe("formatDate", () => {
   it("formatea día/mes/año en hora de Chile", () => {
     expect(formatDate("2026-10-10T03:00:00.000Z")).toBe("10/10/2026");
+  });
+});
+
+describe("formatM2", () => {
+  it("agrupa miles y agrega la unidad", () => {
+    expect(formatM2(5011)).toBe("5.011 m²");
+    expect(formatM2(0)).toBe("0 m²");
   });
 });

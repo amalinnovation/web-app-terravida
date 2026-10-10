@@ -12,6 +12,10 @@ export function formatUf(value: number, decimals = 0): string {
   return `${formatNumber(value, decimals)} UF`;
 }
 
+export function formatM2(value: number): string {
+  return `${formatNumber(value, 0)} m²`;
+}
+
 export function formatClp(value: number): string {
   return `$${formatNumber(Math.round(value), 0)}`;
 }

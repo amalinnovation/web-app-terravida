@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { maxTerm, minDownPayment } from "@/data/credit";
+import { creditConfig, maxTerm } from "@/data/credit";
 import { lots } from "@/data/lots";
 import { heroStats } from "@/data/pillars";
 import { site } from "@/data/site";
@@ -25,9 +25,14 @@ export function Hero({ ufValue }: { ufValue: number }) {
             Tu terreno, tu proyecto, <span className="gold-gradient-text italic">tu decisión.</span>
           </h1>
 
-          <p className="mb-8 max-w-lg text-base leading-relaxed text-brand-linen lg:text-lg">
+          <p className="mb-5 max-w-lg text-base leading-relaxed text-brand-linen lg:text-lg">
             Parcelas de 5.000 m² con Rol Propio individual, red de luz 100% subterránea y crédito directo en hasta{" "}
             {maxTerm} cuotas.
+          </p>
+
+          <p className="mb-8 rounded-xl border border-brand-gold/30 bg-brand-gold/10 px-4 py-3 text-sm text-brand-gold-light">
+            <strong className="font-bold">Precios de lanzamiento:</strong> algunas parcelas tienen descuento por inicio
+            de proyecto.
           </p>
 
           <dl className="mb-8 grid w-full grid-cols-2 gap-2.5 sm:grid-cols-4">
@@ -69,13 +74,13 @@ export function Hero({ ufValue }: { ufValue: number }) {
               <p className="text-sm text-brand-linen">~{formatClp(fromPriceUf * ufValue)} CLP</p>
             </div>
             <div className="text-right">
-              <p className="text-xs font-semibold text-brand-gold">Pie desde {formatPercent(minDownPayment)}</p>
-              <p className="text-xs text-white/80">Hasta {maxTerm} cuotas en UF</p>
+              <p className="text-xs font-semibold text-brand-gold">Pie {formatPercent(creditConfig.downPaymentPct)}</p>
+              <p className="text-xs text-white/80">Saldo en hasta {maxTerm} cuotas</p>
               <a
                 href="#simulador"
                 className="mt-1 inline-block py-1 text-xs font-bold uppercase tracking-wider text-brand-gold-light underline"
               >
-                Simular cuota →
+                Simular compra →
               </a>
             </div>
           </div>
