@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { LotSelectionProvider } from "@/components/providers/LotSelectionProvider";
 import { Catalog } from "@/components/sections/Catalog";
+import { GalleryCarousel } from "@/components/sections/GalleryCarousel";
 import { Hero } from "@/components/sections/Hero";
 import { Location } from "@/components/sections/Location";
 import { Pillars } from "@/components/sections/Pillars";
@@ -22,6 +23,7 @@ export default async function Home() {
       <main>
         <Hero ufValue={uf.value} />
         <Pillars />
+        <GalleryCarousel />
         <Catalog ufValue={uf.value} />
         <Simulator uf={uf} />
         <Location />

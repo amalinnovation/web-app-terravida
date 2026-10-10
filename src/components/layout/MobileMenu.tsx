@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronRight, MessageCircle } from "lucide-react";
-import { ButtonLink } from "@/components/ui/Button";
+import { ButtonLink, ButtonRouteLink } from "@/components/ui/Button";
 import { navLinks, site } from "@/data/site";
 import { buildWhatsAppUrl, generalMessage } from "@/lib/whatsapp";
 
@@ -14,21 +15,21 @@ export function MobileMenu({ open, activeId, onNavigate }: Props) {
     <div id="mobile-menu" className="border-b border-brand-gold/25 bg-brand-surface px-5 py-5 md:hidden">
       <nav aria-label="Menú móvil" className="flex flex-col gap-1">
         {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
+          <Link
+            key={link.id}
+            href={`/#${link.id}`}
             onClick={onNavigate}
-            aria-current={activeId === link.href.slice(1) ? "location" : undefined}
+            aria-current={activeId === link.id ? "location" : undefined}
             className="flex min-h-12 items-center justify-between border-b border-brand-border text-sm font-bold uppercase tracking-[0.18em] text-brand-ivory hover:text-brand-gold aria-[current]:text-brand-gold"
           >
             {link.longLabel}
             <ChevronRight aria-hidden="true" className="size-4 text-brand-gold" />
-          </a>
+          </Link>
         ))}
         <div className="flex flex-col gap-3 pt-4">
-          <ButtonLink href="#contacto-visita" onClick={onNavigate}>
+          <ButtonRouteLink href="/#contacto-visita" onClick={onNavigate}>
             Agendar visita a terreno
-          </ButtonLink>
+          </ButtonRouteLink>
           <ButtonLink
             variant="outline"
             href={buildWhatsAppUrl(generalMessage)}

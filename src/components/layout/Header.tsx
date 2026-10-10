@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, MessageCircle, X } from "lucide-react";
 import { MobileMenu } from "@/components/layout/MobileMenu";
-import { ButtonLink } from "@/components/ui/Button";
+import { ButtonLink, ButtonRouteLink } from "@/components/ui/Button";
 import { navLinks, site } from "@/data/site";
 import { buildWhatsAppUrl, generalMessage } from "@/lib/whatsapp";
 
-const sectionIds = navLinks.map((link) => link.href.slice(1));
+const sectionIds = navLinks.map((link) => link.id);
 
 function useActiveSection(ids: readonly string[]): string | null {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -39,7 +40,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-brand-gold/15 bg-brand-black/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-        <a href="#inicio" className="group flex items-center gap-3">
+        <Link href="/#inicio" className="group flex items-center gap-3">
           <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-brand-gold/40 bg-black p-0.5 sm:size-11">
             <Image src="/images/logo.png" alt="" width={44} height={44} />
           </span>
@@ -49,18 +50,18 @@ export function Header() {
             </span>
             <span className="text-[9px] uppercase leading-none tracking-[0.25em] text-brand-gold">{site.tagline}</span>
           </span>
-        </a>
+        </Link>
 
         <nav aria-label="Principal" className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              aria-current={activeId === link.href.slice(1) ? "location" : undefined}
+            <Link
+              key={link.id}
+              href={`/#${link.id}`}
+              aria-current={activeId === link.id ? "location" : undefined}
               className="border-b border-transparent py-2 text-xs font-medium uppercase tracking-[0.2em] text-brand-linen transition-colors hover:text-brand-gold aria-[current]:border-brand-gold aria-[current]:text-brand-gold"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -75,9 +76,9 @@ export function Header() {
             <MessageCircle aria-hidden="true" className="size-4" />
             WhatsApp
           </ButtonLink>
-          <ButtonLink size="sm" href="#contacto-visita">
+          <ButtonRouteLink size="sm" href="/#contacto-visita">
             Agendar visita
-          </ButtonLink>
+          </ButtonRouteLink>
         </div>
 
         <button

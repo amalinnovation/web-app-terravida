@@ -13,9 +13,11 @@ export const site = {
   visitSchedule: "Atención de miércoles a domingo en Refugio El Convento.",
 } as const;
 
+// Secciones de la portada. Los enlaces usan `/#id` para funcionar también desde /galeria.
 export const navLinks = [
-  { href: "#pilares", label: "Pilares", longLabel: "Pilares del proyecto" },
-  { href: "#catalogo", label: "Lotes", longLabel: "Catálogo de lotes" },
-  { href: "#simulador", label: "Simulador", longLabel: "Simulador de crédito" },
-  { href: "#ubicacion", label: "Ubicación", longLabel: "Ubicación y rutas" },
+  { id: "pilares", label: "Pilares", longLabel: "Pilares del proyecto" },
+  { id: "galeria", label: "Galería", longLabel: "Galería de fotos y videos" },
+  { id: "catalogo", label: "Lotes", longLabel: "Catálogo de lotes" },
+  { id: "simulador", label: "Simulador", longLabel: "Simulador de crédito" },
+  { id: "ubicacion", label: "Ubicación", longLabel: "Ubicación y rutas" },
 ] as const;

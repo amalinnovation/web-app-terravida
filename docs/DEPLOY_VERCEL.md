@@ -87,9 +87,10 @@ Cada `git push` a `main` publica una nueva versión; las demás ramas generan un
 | Para cambiar | Editar |
 |---|---|
 | Lotes, precios en UF, estado y fotos | `src/data/lots.ts` |
-| Opciones de pie, plazos, tasa y UF de respaldo | `src/data/credit.ts` |
+| Pie, plazos, reserva, plazo de escritura y UF de respaldo | `src/data/credit.ts` |
 | Teléfonos, WhatsApp, Instagram y mapa | `src/data/site.ts` |
 | Pilares, métricas del hero y tiempos de viaje | `src/data/pillars.ts` |
+| Fotos y videos de la galería y del carrusel | `src/data/gallery.ts` (archivos en `public/assets/`) |
 
 Los precios en pesos no se editan: se calculan con la UF del día (mindicador.cl). El valor se guarda en caché por un día (`src/lib/uf.ts`) y la página se regenera sola con el valor nuevo, sin necesidad de volver a desplegar.
 

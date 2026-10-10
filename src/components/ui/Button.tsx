@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ComponentProps } from "react";
 
 type Variant = "gold" | "outline";
@@ -25,4 +26,9 @@ export function Button({ variant, size, className, type = "button", ...props }: 
 
 export function ButtonLink({ variant, size, className, ...props }: ComponentProps<"a"> & StyleProps) {
   return <a className={classes({ variant, size }, className)} {...props} />;
+}
+
+/** Igual que ButtonLink, pero navega entre páginas del sitio sin recargar. */
+export function ButtonRouteLink({ variant, size, className, ...props }: ComponentProps<typeof Link> & StyleProps) {
+  return <Link className={classes({ variant, size }, className)} {...props} />;
 }
