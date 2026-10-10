@@ -51,18 +51,18 @@ export function Hero({ ufValue }: { ufValue: number }) {
           </div>
         </div>
 
-        <div className="group relative mx-auto w-full max-w-[540px] overflow-hidden rounded-2xl border border-brand-gold/35 bg-brand-surface shadow-gold-glow lg:max-w-none">
-          <div className="relative aspect-[4/3]">
-            <Image
-              src="/images/parcela_post_1.jpg"
-              alt="Vista de una parcela de Terravida en Refugio El Convento"
-              fill
-              preload
-              sizes="(min-width: 1024px) 560px, 100vw"
-              className="object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
-            />
-          </div>
-          <div className="glass-card absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-xl p-4 sm:inset-x-4 sm:bottom-4">
+        <div className="mx-auto w-full max-w-[540px] overflow-hidden rounded-2xl border border-brand-gold/35 bg-brand-surface shadow-gold-glow">
+          {/* La pieza trae texto propio: se muestra entera, en su proporción original y sin nada encima. */}
+          <Image
+            src="/images/parcela_post_1.jpg"
+            alt="Terravida, Parcelas & Naturaleza. Tu terreno. Tu proyecto. Tu decisión. Espacio, naturaleza y libertad para construir la vida que siempre imaginaste."
+            width={640}
+            height={639}
+            preload
+            sizes="(min-width: 1024px) 540px, 100vw"
+            className="h-auto w-full"
+          />
+          <div className="flex items-center justify-between gap-3 border-t border-brand-gold/25 p-4 sm:px-5">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gold">Preventa Etapa 1</p>
               <p className="font-serif text-2xl font-bold leading-tight text-brand-ivory">Desde {formatUf(fromPriceUf)}</p>
