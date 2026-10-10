@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { creditConfig } from "@/data/credit";
+import { maxTerm, minDownPayment } from "@/data/credit";
 import { lots } from "@/data/lots";
 import { heroStats } from "@/data/pillars";
 import { site } from "@/data/site";
@@ -11,8 +11,6 @@ import { buildWhatsAppUrl, visitMessage } from "@/lib/whatsapp";
 
 export function Hero({ ufValue }: { ufValue: number }) {
   const fromPriceUf = minPriceUf(lots);
-  const minDownPayment = Math.min(...creditConfig.downPaymentOptions);
-  const maxTerm = Math.max(...creditConfig.termOptions);
 
   return (
     <section id="inicio" className="border-b border-brand-gold/15 pb-16 pt-8 sm:pt-12 lg:pb-24 lg:pt-16">

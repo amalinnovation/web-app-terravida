@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cinzel, EB_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { maxTerm } from "@/data/credit";
 import "./globals.css";
 
 const garamond = EB_Garamond({
@@ -12,8 +13,7 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakart
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const title = "TERRAVÍDA — Parcelas & Naturaleza | Refugio El Convento, Santo Domingo";
-const description =
-  "Parcelas exclusivas de 5.000 m² en Refugio El Convento, Santo Domingo. Rol propio, luz soterrada y crédito directo en hasta 48 cuotas.";
+const description = `Parcelas exclusivas de 5.000 m² en Refugio El Convento, Santo Domingo. Rol propio, luz soterrada y crédito directo en hasta ${maxTerm} cuotas.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

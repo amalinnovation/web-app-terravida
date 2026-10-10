@@ -19,3 +19,8 @@ export const creditConfig: CreditConfig = {
   defaultTerm: 48,
   fallbackUfValue: 41136,
 };
+
+/** Plazo más largo ofrecido. Todo texto que mencione "N cuotas" debe usar este valor. */
+export const maxTerm = Math.max(...creditConfig.termOptions);
+/** Pie más bajo ofrecido, como fracción. */
+export const minDownPayment = Math.min(...creditConfig.downPaymentOptions);

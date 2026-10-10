@@ -1,10 +1,11 @@
 import { BadgeCheck, Banknote, Trees, Zap, type LucideIcon } from "lucide-react";
+import { maxTerm } from "./credit";
 
 export const heroStats: readonly { label: string; value: string }[] = [
   { label: "Superficie", value: "5.000 m²" },
   { label: "Estatus", value: "Rol Propio" },
   { label: "Red", value: "Soterrada" },
-  { label: "Crédito", value: "48 cuotas" },
+  { label: "Crédito", value: `${maxTerm} cuotas` },
 ];
 
 export const pillars: readonly { icon: LucideIcon; title: string; description: string; tag: string }[] = [
@@ -23,7 +24,7 @@ export const pillars: readonly { icon: LucideIcon; title: string; description: s
   {
     icon: Banknote,
     title: "Crédito Directo",
-    description: "Hasta 48 cuotas directas con la inmobiliaria, sin bancos.",
+    description: `Hasta ${maxTerm} cuotas directas con la inmobiliaria, sin bancos.`,
     tag: "Trato directo",
   },
   {
