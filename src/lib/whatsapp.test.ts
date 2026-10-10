@@ -4,7 +4,7 @@ import { buildWhatsAppUrl, simulationMessage, visitRequestMessage } from "./what
 describe("buildWhatsAppUrl", () => {
   it("apunta al número de Terravida y codifica el mensaje", () => {
     const url = buildWhatsAppUrl("Hola, ¿qué tal? & más");
-    expect(url.startsWith("https://wa.me/56933722243?text=")).toBe(true);
+    expect(url.startsWith("https://wa.me/56933773996?text=")).toBe(true);
     expect(url).not.toContain(" ");
     expect(url).not.toContain("&");
     expect(decodeURIComponent(url.split("?text=")[1])).toBe("Hola, ¿qué tal? & más");

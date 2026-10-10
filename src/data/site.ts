@@ -3,8 +3,8 @@ export const site = {
   tagline: "Parcelas & Naturaleza",
   project: "Refugio El Convento",
   location: "Santo Domingo",
-  whatsappNumber: "56933722243",
-  phones: ["+56 9 3372 2243", "+56 9 3377 3996"],
+  whatsappNumber: "56933773996",
+  phones: ["+56 9 3377 3996"],
   instagram: {
     handle: "@terravida.parcelas",
     url: "https://www.instagram.com/terravida.parcelas/",
