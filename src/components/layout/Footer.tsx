@@ -50,21 +50,26 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <div className="flex flex-col gap-1 sm:items-end">
+        <div className="flex flex-col items-center gap-2 sm:items-end">
           <p>
             © {currentYear} {site.name} · {site.location}, Chile
           </p>
-          <p className="text-xs">
-            Página creada por{" "}
-            <a
-              href="https://amalinnovations.cl/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-brand-linen hover:text-brand-gold hover:underline"
-            >
-              Amal Innovations
-            </a>
-          </p>
+          <a
+            href="https://amalinnovations.cl/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2.5 text-xs"
+          >
+            <span>
+              Creado por{" "}
+              <span className="font-semibold text-brand-linen group-hover:text-brand-gold group-hover:underline">
+                Amal Innovations
+              </span>
+            </span>
+            <span className="block size-11 shrink-0 overflow-hidden rounded-full border border-brand-gold/30 bg-black transition-colors group-hover:border-brand-gold">
+              <Image src="/images/amal-logo.png" alt="" width={44} height={44} className="size-full scale-125 object-cover" />
+            </span>
+          </a>
         </div>
       </div>
     </footer>
