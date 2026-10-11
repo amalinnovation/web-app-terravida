@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { featuredLots, lots } from "@/data/lots";
-import { filterLots, findLot, minPriceUf } from "./lots";
+import { findLot, minPriceUf } from "./lots";
 
 describe("listado de parcelas", () => {
   it("contiene las 54 filas del listado de precios, con ids únicos", () => {
@@ -34,24 +34,6 @@ describe("findLot", () => {
   });
   it("devuelve undefined para un id desconocido", () => {
     expect(findLot("no-existe")).toBeUndefined();
-  });
-});
-
-describe("filterLots", () => {
-  it("devuelve todas con el tramo 'todas'", () => {
-    expect(filterLots(lots, "todas")).toHaveLength(lots.length);
-  });
-  it("separa las parcelas por tramo de precio sin perder ninguna", () => {
-    const entrada = filterLots(lots, "entrada");
-    const media = filterLots(lots, "media");
-    const alta = filterLots(lots, "alta");
-    expect(entrada.every((lot) => lot.priceUf <= 1200)).toBe(true);
-    expect(media.every((lot) => lot.priceUf > 1200 && lot.priceUf < 1600)).toBe(true);
-    expect(alta.every((lot) => lot.priceUf >= 1600)).toBe(true);
-    expect(entrada.length + media.length + alta.length).toBe(lots.length);
-  });
-  it("devuelve una lista vacía si ninguna parcela coincide", () => {
-    expect(filterLots(filterLots(lots, "entrada"), "alta")).toEqual([]);
   });
 });
 

@@ -8,8 +8,6 @@ export type Lot = {
   priceUf: number;
 };
 
-export type PriceTier = "todas" | "entrada" | "media" | "alta";
-
 // Transcrito de public/assets/precios.jpeg (listado de precios, página 2 de 2).
 // Columnas: número, superficie m², servidumbre m², UF.
 // En las parcelas 7, 19 y 20 el listado muestra una UF que no calza con su monto en pesos;
@@ -79,13 +77,6 @@ export const lots: readonly Lot[] = priceList.map(([label, surfaceM2, easementM2
   easementM2,
   priceUf,
 }));
-
-export const priceTiers: readonly { value: PriceTier; label: string }[] = [
-  { value: "todas", label: "Todas" },
-  { value: "entrada", label: "Hasta 1.200 UF" },
-  { value: "media", label: "1.300 a 1.500 UF" },
-  { value: "alta", label: "Desde 1.600 UF" },
-];
 
 /** Parcelas que se muestran con foto. Las fotos son del proyecto, no de cada parcela. */
 export const featuredLots: readonly { lotId: string; tag: string; image: string; imageAlt: string }[] = [

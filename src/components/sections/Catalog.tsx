@@ -1,20 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import { useLotSelection } from "@/components/providers/LotSelectionProvider";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { Chip } from "@/components/ui/Chip";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { featuredLots, lots, priceTiers, type PriceTier } from "@/data/lots";
+import { featuredLots } from "@/data/lots";
 import { formatClp, formatM2, formatUf } from "@/lib/format";
-import { filterLots, findLot } from "@/lib/lots";
+import { findLot } from "@/lib/lots";
 
 export function Catalog({ ufValue }: { ufValue: number }) {
-  const [tier, setTier] = useState<PriceTier>("todas");
-  const { selectedLot, selectLot } = useLotSelection();
-  const visibleLots = filterLots(lots, tier);
+  const { selectLot } = useLotSelection();
 
   function handleSimulate(id: string) {
     selectLot(id);
@@ -72,95 +68,6 @@ export function Catalog({ ufValue }: { ufValue: number }) {
             );
           })}
         </ul>
-
-        <div className="mt-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <h3 className="font-serif text-2xl text-brand-ivory">Listado completo de precios</h3>
-          <div
-            role="group"
-            aria-label="Filtrar parcelas por precio"
-            className="flex max-w-full gap-1.5 overflow-x-auto rounded-2xl border border-brand-gold/25 bg-brand-surface p-1.5"
-          >
-            {priceTiers.map((option) => (
-              <Chip key={option.value} selected={tier === option.value} onClick={() => setTier(option.value)}>
-                {option.label}
-              </Chip>
-            ))}
-          </div>
-        </div>
-
-        {visibleLots.length === 0 ? (
-          <p className="mt-5 rounded-2xl border border-brand-gold/25 bg-brand-card p-8 text-center text-brand-linen">
-            No hay parcelas en este tramo de precio por ahora.
-          </p>
-        ) : (
-          <div className="mt-5 max-h-[34rem] overflow-auto rounded-2xl border border-brand-gold/25 bg-brand-card">
-            <table className="w-full text-left text-sm">
-              <caption className="sr-only">
-                Parcelas de Refugio El Convento con superficie, servidumbre y precio en UF
-              </caption>
-              <thead className="sticky top-0 bg-brand-surface text-xs uppercase tracking-wider text-brand-gold">
-                <tr>
-                  <th scope="col" className="px-4 py-3">
-                    Parcela
-                  </th>
-                  <th scope="col" className="px-4 py-3 text-right">
-                    Superficie
-                  </th>
-                  <th scope="col" className="hidden px-4 py-3 text-right md:table-cell">
-                    Servidumbre
-                  </th>
-                  <th scope="col" className="px-4 py-3 text-right">
-                    Precio
-                  </th>
-                  <th scope="col" className="hidden px-4 py-3 text-right sm:table-cell">
-                    Referencia CLP
-                  </th>
-                  <th scope="col" className="px-4 py-3">
-                    <span className="sr-only">Acción</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {visibleLots.map((lot) => {
-                  const isSelected = lot.id === selectedLot.id;
-                  return (
-                    <tr
-                      key={lot.id}
-                      className={`border-t border-brand-gold/10 ${isSelected ? "bg-brand-gold/10" : ""}`}
-                    >
-                      <th scope="row" className="whitespace-nowrap px-4 py-2 font-serif text-base text-brand-ivory">
-                        {lot.name}
-                      </th>
-                      <td className="whitespace-nowrap px-4 py-2 text-right text-brand-linen">
-                        {formatM2(lot.surfaceM2)}
-                      </td>
-                      <td className="hidden whitespace-nowrap px-4 py-2 text-right text-brand-muted md:table-cell">
-                        {formatM2(lot.easementM2)}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-2 text-right font-bold text-brand-gold">
-                        {formatUf(lot.priceUf)}
-                      </td>
-                      <td className="hidden whitespace-nowrap px-4 py-2 text-right text-brand-linen sm:table-cell">
-                        ~{formatClp(lot.priceUf * ufValue)}
-                      </td>
-                      <td className="px-2 py-1 text-right">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          aria-label={`Simular compra de ${lot.name}`}
-                          aria-pressed={isSelected}
-                          onClick={() => handleSimulate(lot.id)}
-                        >
-                          Simular
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        )}
       </div>
     </section>
   );
